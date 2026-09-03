@@ -40,7 +40,7 @@ class ReadmeExperimentTests(unittest.TestCase):
 
     def test_supervisor_guide_commands(self):
         """导师指南必须有可检查的真实实验命令，并使用本地 Ollama 后端。"""
-        guide = (ROOT / "docs/supervisor-guide.md").read_text(encoding="utf-8")
+        guide = (ROOT / "docs/跑实验操作指南.md").read_text(encoding="utf-8")
         commands = read_commands(guide)
         self.assertGreaterEqual(len(commands), 4)
         self.assertEqual(check_commands(commands, ROOT), [])
