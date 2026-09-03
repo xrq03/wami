@@ -1,0 +1,17 @@
+# 基础环境、文档导出和本地对比方法。
+-r requirements.txt
+openai>=1.59.7
+pandas>=2
+pillow>=10
+matplotlib>=3.8
+python-docx>=1.1
+openpyxl>=3.1
+transformers>=4.51,<5
+accelerate>=1
+bitsandbytes>=0.43
+sentencepiece>=0.2
+
+# AgentDojo会导入多个模型适配器，使用完整包依赖。
+# 旧langchain 0.0.x与Pydantic 2不兼容。
+langchain>=0.3,<0.4
+-e ./external/AgentDojo[transformers]

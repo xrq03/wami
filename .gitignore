@@ -47,3 +47,8 @@ github_upload_report.local.json
 
 # 不上传根目录论文原稿；data/ 下实验图表 PDF 不受影响。
 /*.pdf
+
+# 当前实验使用的三个小权重；大.pt改用Release附件。
+!wami_injecagent_final_e5.npz
+!wami_bipia_final_e5.npz
+!wami_agentdojo_final_tuned_e5.npz

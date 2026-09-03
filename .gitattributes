@@ -1,0 +1,4 @@
+# 保持打包资源的字节与SHA256一致，不随系统转换换行符。
+external/** -text
+data/cyberseceval3_vpi/images/** -text
+*.npz -text
