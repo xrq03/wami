@@ -1,0 +1,6 @@
+method,total,planner_success,preserved_success,blocked,toolbench_sr,toolbench_retention,latency_ms
+No Defense qwen2.5 instruction-plan,10,4,4,0,0.4,1.0,0.0003700028173625469
+Erase-and-Check qwen2.5 judge,10,4,4,3,0.4,1.0,635.4244300047867
+ToolEmu-Sandbox qwen2.5 judge,10,4,4,3,0.4,1.0,695.2453200356103
+Llama-Guard 3 8B local/Ollama,10,4,4,0,0.4,1.0,935.8589199837297
+WAMI + qwen2.5 local agent,10,4,4,0,0.4,1.0,2.558950032107532

@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,status,note
+BIPIA,WAMI runtime action replay,1.0,0.0,1.0,1.4032042083272245,2400,1200,1200,runtime-replay-action-level,Read/search/observation steps are replayed first; WAMI is applied before non-observation action transitions.
+InjecAgent,WAMI runtime action replay,0.9335863377609108,0.0,0.9669265296480037,1.0288364989392613,4233,2108,2125,runtime-replay-action-level,Read/search/observation steps are replayed first; WAMI is applied before non-observation action transitions.
+AgentDojo,WAMI runtime action replay,0.8042328042328042,0.011627906976744186,0.8284839203675345,3.6426702908997584,653,567,86,runtime-replay-action-level,Read/search/observation steps are replayed first; WAMI is applied before non-observation action transitions.

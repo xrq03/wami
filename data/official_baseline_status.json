@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Erase-and-Check",
+    "repo": "https://github.com/aounon/certified-llm-safety",
+    "path": "external/certified-llm-safety",
+    "imports": [
+      [
+        "defenses",
+        "erase_and_check"
+      ]
+    ],
+    "runtime_requirements": [
+      "A safety filter: Llama-2/3, GPT-3.5, or trained DistilBERT classifier",
+      "Tokenizer compatible with the safety filter",
+      "Optional official DistilBERT weights from the authors' Dropbox link",
+      "GPU recommended by the official README"
+    ],
+    "exists": true,
+    "import_results": [
+      {
+        "module": "defenses",
+        "attr": "erase_and_check",
+        "ok": true,
+        "error": ""
+      }
+    ],
+    "ready_for_official_table2": true
+  },
+  {
+    "name": "SmoothLLM",
+    "repo": "https://github.com/arobey1/smooth-llm",
+    "path": "external/smooth-llm",
+    "imports": [
+      [
+        "lib.perturbations",
+        "RandomSwapPerturbation"
+      ]
+    ],
+    "runtime_requirements": [
+      "Vicuna or Llama-2 weights configured in lib/model_configs.py",
+      "llm-attacks / FastChat stack required by the official experiment runner",
+      "GPU for local target-model inference"
+    ],
+    "exists": true,
+    "import_results": [
+      {
+        "module": "lib.perturbations",
+        "attr": "RandomSwapPerturbation",
+        "ok": true,
+        "error": ""
+      }
+    ],
+    "ready_for_official_table2": true
+  },
+  {
+    "name": "ToolEmu",
+    "repo": "https://github.com/ryoungj/ToolEmu",
+    "path": "external/ToolEmu",
+    "imports": [
+      [
+        "toolemu",
+        null
+      ]
+    ],
+    "runtime_requirements": [
+      "PromptCoder/procoder from https://github.com/dhh1995/PromptCoder",
+      "ToolEmu Python dependencies such as langchain==0.0.277, transformers, torch, openai, anthropic",
+      "OPENAI_API_KEY or ANTHROPIC_API_KEY for official emulation/evaluation",
+      "Its own ToolEmu benchmark assets, not a direct InjecAgent/BIPIA drop-in defense"
+    ],
+    "exists": true,
+    "import_results": [
+      {
+        "module": "toolemu",
+        "attr": null,
+        "ok": true,
+        "error": ""
+      }
+    ],
+    "ready_for_official_table2": true
+  },
+  {
+    "name": "PromptCoder dependency for ToolEmu",
+    "repo": "https://github.com/dhh1995/PromptCoder",
+    "path": "external/PromptCoder",
+    "imports": [
+      [
+        "procoder",
+        null
+      ]
+    ],
+    "runtime_requirements": [
+      "Installed or on PYTHONPATH before running ToolEmu"
+    ],
+    "exists": true,
+    "import_results": [
+      {
+        "module": "procoder",
+        "attr": null,
+        "ok": true,
+        "error": ""
+      }
+    ],
+    "ready_for_official_table2": true
+  }
+]

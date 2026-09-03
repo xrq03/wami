@@ -1,0 +1,3 @@
+variant,model,ir,fpr,acc,n
+without_llm_shadow_training,wami_agentdojo_current_e3.npz,0.8915470494417863,0.03488372093023256,0.9004207573632539,713
+with_llm_shadow_training,wami_current_agentdojo_llm_shadow_10x6_e2.npz,0.8452950558213717,0.023255813953488372,0.8611500701262272,713

@@ -1,0 +1,4 @@
+method,security_avg_ir,task_utility_1_minus_fpr,inference_speed_norm,computational_efficiency_norm
+WAMI (Ours),94.564279,94.771774,100.000000,100.000000
+Llama-Guard 3 (8B),52.000000,95.790698,1.730512,7.593280
+SmoothLLM,80.833333,74.200000,17.184591,7.979821

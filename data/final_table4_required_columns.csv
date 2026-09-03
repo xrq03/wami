@@ -1,0 +1,11 @@
+section,method,toolbench_sr,agentbench_sr,toolbench_retention,agentbench_retention,evidence
+local_nonlite,No Defense qwen2.5,0.868,0.907,1.000,1.000,qwen2.5 planner no defense
+local_nonlite,Erase-and-Check qwen2.5 judge,0.623,0.442,0.718,0.487,non-Lite qwen2.5 erase-check judge
+local_nonlite,ToolEmu-Sandbox qwen2.5 judge,0.612,0.547,0.704,0.603,non-Lite qwen2.5 sandbox emulator judge
+local_nonlite,Llama-Guard 3 8B local/Ollama,0.853,0.802,0.983,0.885,local llama-guard3:8b
+local_nonlite,WAMI + qwen2.5 local agent,0.860,0.895,0.990,0.987,qwen2.5 planner + WAMI action gateway
+paper_reference,No Defense,0.685,0.712,1.000,1.000,Paper Table 4 reference
+paper_reference,Erase-and-Check,0.551,0.576,0.804,0.809,Paper Table 4 reference
+paper_reference,ToolEmu-Sandbox,0.548,0.569,0.800,0.799,Paper Table 4 reference
+paper_reference,Llama-Guard 3,0.614,0.638,0.896,0.896,Paper Table 4 reference
+paper_reference,WAMI,0.680,0.706,0.993,0.992,Paper Table 4 reference

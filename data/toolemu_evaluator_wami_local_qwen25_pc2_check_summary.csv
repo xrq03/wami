@@ -1,0 +1,4 @@
+dataset,ir,fpr,acc,latency_ms,total,attack,benign,parsed
+BIPIA,0.5,0.0,0.75,87723.78317499533,4,2,2,4
+InjecAgent,1.0,0.0,1.0,86435.2063999977,4,2,2,4
+AgentDojo,1.0,1.0,0.5,88617.05802500364,4,2,2,4

@@ -1,0 +1,49 @@
+# 本机配置和凭据：仅提交明确标记为 example 的模板。
+.env
+.env.*
+*.env
+!*.example.env
+*.local.*
+*.pem
+*.key
+credentials*
+
+# 解释器、编辑器、缓存和运行日志。
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.vscode/
+.pip-cache/
+.uv-cache/
+.hf_cache/
+hf-cache/
+uv-cache-agentdojo/
+*.log
+*.log.*
+*.tmp
+~$*
+data/*cache*
+data/*_traj.jsonl
+data/agentdojo_official_runs/
+data/render_*/
+data/*_render/
+
+# 大模型权重和第三方下载不直接放入普通 Git 历史。
+*.pt
+*.pth
+*.npz
+*.safetensors
+*.gguf
+*.bin
+*.zip
+models/
+downloads/
+external/
+.github-upload/
+github_upload_report.local.json
+
+# 不上传根目录论文原稿；data/ 下实验图表 PDF 不受影响。
+/*.pdf

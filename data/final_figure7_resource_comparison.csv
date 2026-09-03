@@ -1,0 +1,5 @@
+defense,runtime_basis,footprint_kind,footprint_gib,toolbench_latency_ms,agentbench_latency_ms,notes
+WAMI gateway,Paper-style WAMI defense module; qwen2.5 planner is shared with no-defense and not counted as defense memory.,Measured CUDA peak reserved,0.348,7.2,9.6,NPZ model file 0.443 MB; peak allocated 336.0 MB.
+Erase-and-Check,Local qwen2.5 judge baseline.,Ollama model layer footprint proxy,4.361,638.8,929.5,"Extra LLM judge beyond the shared planner; footprint is disk model layer, not synchronized VRAM profiler."
+ToolEmu-Sandbox,Local qwen2.5 sandbox judge baseline.,Ollama model layer footprint proxy,4.361,742.5,866.8,Reproduced as local judge/sandbox protocol; official multi-agent ToolEmu can require larger model stacks.
+Llama-Guard 3 8B,Local Ollama safety classifier.,Ollama model layer footprint proxy,4.583,196.3,360.1,Local 8B guard model footprint proxy.

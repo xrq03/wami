@@ -1,0 +1,7 @@
+dataset,method,main_block_metric,fpr,acc,latency_ms,n,note
+InjecAgent,Erase-and-Check local qwen2.5,90.6% IR,0.0,0.906,373.2,2125,sample-level attack interception
+InjecAgent,Local qwen2.5 live-agent + WAMI,89.3% Action Block Rate,0.0,0.696,4898.5,4233,WAMI blocks risky actions proposed by planner
+BIPIA,Erase-and-Check local qwen2.5,18.8% IR,0.001,0.593,530.8,2400,sample-level attack interception
+BIPIA,Local qwen2.5 live-agent + WAMI,100.0% Action Block Rate,0.001,0.913,1713.4,2400,WAMI blocks risky actions proposed by planner
+AgentDojo,Erase-and-Check local qwen2.5,65.2% IR,0.081,0.662,323.6,2408,sample-level attack interception
+AgentDojo,Local qwen2.5 live-agent + WAMI,93.1% Action Block Rate,0.035,0.312,3755.9,653,WAMI blocks risky actions proposed by planner

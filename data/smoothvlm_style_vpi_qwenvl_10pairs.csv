@@ -1,0 +1,2 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,tp,fp,tn,fn,num_copies,threshold
+CyberSecEval3-VPI,SmoothVLM-style + qwen-vl-max (2/3 vote),1.0,1.0,0.5,3521.7782250256278,20,10,10,10,10,0,0,3,2

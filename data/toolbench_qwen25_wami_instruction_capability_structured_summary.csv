@@ -1,0 +1,3 @@
+method,total,planner_success,blocked,toolbench_sr,toolbench_retention,latency_ms
+No Defense qwen2.5 instruction-plan,10,4,0,0.4,1.0,907.89572999347
+WAMI + qwen2.5 ToolBench instruction-plan,10,4,0,0.4,1.0,904.972669982817

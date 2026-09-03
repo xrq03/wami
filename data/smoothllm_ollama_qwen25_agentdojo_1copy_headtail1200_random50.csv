@@ -1,0 +1,2 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,num_copies
+AgentDojo,SmoothLLM-style perturbation + qwen2.5:7b-instruct judge (1/1 vote),0.88,0.44,0.72,251.10810000216588,50,25,25,1

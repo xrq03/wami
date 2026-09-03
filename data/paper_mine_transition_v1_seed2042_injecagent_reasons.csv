@@ -1,0 +1,5 @@
+dataset,label,reason,count,share
+injecagent_wami,attack,paper MINE transition alignment below dynamic threshold,1671,0.7926944971537002
+injecagent_wami,attack,paper MINE trajectory remained aligned,437,0.2073055028462998
+injecagent_wami,benign,paper MINE trajectory remained aligned,1375,0.6470588235294118
+injecagent_wami,benign,paper MINE transition alignment below dynamic threshold,750,0.35294117647058826

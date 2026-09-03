@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n
+InjecAgent,Erase-and-Check official (mistral:v0.3),0.62,0.0,0.6752136752136753,318.65756581617023,117,100,17
+BIPIA,Erase-and-Check official (mistral:v0.3),0.03,0.01,0.51,543.6709235032322,200,100,100
+AgentDojo,Erase-and-Check official (mistral:v0.3),0.04,0.0,0.4838709677419355,214.45801560091036,186,100,86

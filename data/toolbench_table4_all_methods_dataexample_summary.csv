@@ -1,0 +1,6 @@
+method,success_rate,retention,false_block_rate,latency_ms,total,official_success,blocked
+No Defense,0.6,1.0,0.0,0.0004466700678070386,15,9,0
+Erase-and-Check Lite,0.6,1.0,0.0,0.08614667846510808,15,9,0
+ToolEmu-Sandbox Lite,0.6,1.0,0.0,0.10033332897971074,15,9,0
+Llama-Guard 3 8B local/Ollama,0.6,1.0,0.0,460.6736733422925,15,9,0
+WAMI InjecAgent model,0.5333333333333333,0.888888888888889,0.13333333333333333,7.800460024736822,15,9,2

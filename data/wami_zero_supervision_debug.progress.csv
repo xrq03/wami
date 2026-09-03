@@ -1,0 +1,2 @@
+epoch,loss,mine_bound,mi_gap,world_loss,elapsed_sec
+1,2.495481,0.001552,0.003349,5.527634,20.3

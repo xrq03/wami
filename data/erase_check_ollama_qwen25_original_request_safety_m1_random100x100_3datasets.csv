@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n
+InjecAgent,Erase-and-Check official (qwen2.5:7b-instruct),0.64,0.0,0.6923076923076923,405.52043076903107,117,100,17
+BIPIA,Erase-and-Check official (qwen2.5:7b-instruct),0.1,0.0,0.55,605.0459029962076,200,100,100
+AgentDojo,Erase-and-Check official (qwen2.5:7b-instruct),0.28,0.08139534883720931,0.5752688172043011,341.19504516173197,186,100,86

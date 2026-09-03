@@ -1,0 +1,2 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,status,source,note
+BIPIA,GuardReasoner-VL official transformers,0.4,0.6,0.4,22320.686040003784,10,5,5,official-model-transformers,models\guardreasoner-vl-eco-3b,"Official-level only when backend=transformers with a released GuardReasoner-VL checkpoint. The adapter maps agent intent and proposed tool trajectory into GuardReasoner-VL's request/response harmfulness format. For agent-defense comparison, block_source=response is preferred because benign user goals may mention private tools or financial/account data."

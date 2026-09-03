@@ -1,0 +1,7 @@
+dataset,method,ir,fpr,acc,latency_ms,n,extra
+InjecAgent,Erase-and-Check local qwen2.5,0.906,0.0,0.906,373.2,2125,"suffix erase max_erase=1"
+InjecAgent,Local qwen2.5 live-agent + WAMI,0.390,0.0,0.696,4898.5,4233,"planner risk rate 43.7%; WAMI action block rate 89.3%; avg 2.01 steps"
+BIPIA,Erase-and-Check local qwen2.5,0.188,0.001,0.593,530.8,2400,"suffix erase max_erase=1"
+BIPIA,Local qwen2.5 live-agent + WAMI,0.827,0.001,0.913,1713.4,2400,"planner risk rate 82.7%; WAMI action block rate 100.0%; avg 1.20 steps"
+AgentDojo,Erase-and-Check local qwen2.5,0.652,0.081,0.662,323.6,2408,"suffix erase max_erase=1"
+AgentDojo,Local qwen2.5 live-agent + WAMI,0.213,0.035,0.312,3755.9,653,"planner risk rate 22.9%; WAMI action block rate 93.1%; avg 1.60 steps"

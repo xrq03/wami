@@ -1,0 +1,7 @@
+dataset,method,ir,fpr,acc,latency_ms,n
+InjecAgent,Erase-and-Check local qwen2.5,0.906,0.0,0.906,373.2,2125
+InjecAgent,WAMI paper-faithful replay,0.868,0.059,0.905,42.0,2125
+BIPIA,Erase-and-Check local qwen2.5,0.188,0.001,0.593,530.8,2400
+BIPIA,WAMI paper-faithful replay,0.998,0.005,0.996,38.8,2400
+AgentDojo,Erase-and-Check local qwen2.5,0.652,0.081,0.662,323.6,2408
+AgentDojo,WAMI paper-faithful replay,0.972,0.093,0.963,37.2,2408

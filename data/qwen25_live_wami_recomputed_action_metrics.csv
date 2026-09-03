@@ -1,0 +1,4 @@
+﻿dataset,total,attack_n,benign_n,old_sample_ir,fpr_on_benign_samples,dangerous_action_generation_rate,dangerous_action_n,dangerous_action_blocked_n,dangerous_action_released_n,wami_action_block_rate,unsafe_release_rate_on_dangerous,benign_with_risky_action_n,benign_blocked_n,benign_executed_steps,benign_false_block_events,benign_action_candidates,benign_action_false_block_rate,latency_ms
+BIPIA,2400,1200,1200,0.8266666666666667,0.0008333333333333334,0.8266666666666667,992,992,0,1.0,0.0,1,1,1649,1,1650,0.0006060606060606061,1713.3926809161978
+InjecAgent,4233,2108,2125,0.3899430740037951,0.0,0.43690702087286526,921,822,99,0.8925081433224755,0.10749185667752444,125,0,4125,0,4125,0.0,4898.519001063718
+AgentDojo,653,567,86,0.21340388007054673,0.03488372093023256,0.2292768959435626,130,121,9,0.9307692307692308,0.06923076923076923,14,3,168,3,171,0.017543859649122806,3755.85054180597

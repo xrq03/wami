@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,num_copies
+InjecAgent,SmoothLLM-style perturbation + qwen-turbo judge,0.96,0.5882352941176471,0.7380952380952381,2048.67777857206,42,25,17,3
+BIPIA,SmoothLLM-style perturbation + qwen-turbo judge,0.72,0.04,0.84,2146.897611999302,50,25,25,3
+AgentDojo,SmoothLLM-style perturbation + qwen-turbo judge,1.0,0.8,0.6,2023.0396520005888,50,25,25,3

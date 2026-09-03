@@ -1,0 +1,2 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,tp,fp,tn,fn,num_copies,threshold
+CyberSecEval3-VPI,SmoothVLM-style + llava-llama3:8b [local_strict] (2/3 vote),1.0,0.35,0.825,1136.6451799694914,40,20,20,20,7,13,0,3,2

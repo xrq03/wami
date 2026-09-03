@@ -1,0 +1,7 @@
+source,system,toolbench_sr,agentbench_sr,toolbench_retention,agentbench_retention,note
+paper_table4,No Defense,0.685,0.712,1.0,1.0,values extracted from the paper Table 4
+paper_table4,+ Erase-and-Check,0.551,0.576,0.804,0.809,values extracted from the paper Table 4
+paper_table4,+ ToolEmu-Sandbox,0.548,0.569,0.8,0.799,values extracted from the paper Table 4
+paper_table4,+ Llama-Guard 3,0.614,0.638,0.896,0.896,values extracted from the paper Table 4
+paper_table4,+ WAMI (Ours),0.68,0.706,0.993,0.992,values extracted from the paper Table 4
+local_proxy,"+ WAMI (Ours, proxy)",0.6810041666666667,0.6954418604651162,0.9941666666666666,0.9767441860465116,computed from local benign allow-rate proxy; not official ToolBench/AgentBench

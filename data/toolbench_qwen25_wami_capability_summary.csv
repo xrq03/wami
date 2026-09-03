@@ -1,0 +1,3 @@
+method,total,planner_success,blocked,toolbench_sr,toolbench_retention,latency_ms
+No Defense qwen2.5 plan-match,15,0,0,0.0,1.0,899.6612933309128
+WAMI + qwen2.5 live ToolBench planner,15,0,0,0.0,0.0,895.0912199992066

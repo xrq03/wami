@@ -1,0 +1,32 @@
+| Dataset | Epoch | Loss | MI Gap |
+|---|---:|---:|---:|
+| injecagent | 1 | 1.3360 | 0.1193 |
+| injecagent | 2 | 1.2852 | 0.2537 |
+| injecagent | 3 | 1.2495 | 0.3635 |
+| injecagent | 4 | 1.2208 | 0.4684 |
+| injecagent | 5 | 1.2126 | 0.5116 |
+| injecagent | 6 | 1.2026 | 0.5605 |
+| injecagent | 7 | 1.1841 | 0.6369 |
+| injecagent | 8 | 1.1755 | 0.6901 |
+| injecagent | 9 | 1.1753 | 0.7112 |
+| injecagent | 10 | 1.1631 | 0.7629 |
+| injecagent | 11 | 1.1599 | 0.7963 |
+| injecagent | 12 | 1.1473 | 0.8465 |
+| injecagent | 13 | 1.1463 | 0.8694 |
+| injecagent | 14 | 1.1453 | 0.8912 |
+| injecagent | 15 | 1.1289 | 0.9779 |
+| injecagent | 16 | 1.1345 | 0.9787 |
+| injecagent | 17 | 1.1303 | 0.9992 |
+| injecagent | 18 | 1.1279 | 1.0201 |
+| injecagent | 19 | 1.1336 | 0.9923 |
+| injecagent | 20 | 1.1205 | 1.0589 |
+| injecagent | 21 | 1.1255 | 1.0533 |
+| injecagent | 22 | 1.1106 | 1.1209 |
+| injecagent | 23 | 1.1104 | 1.1486 |
+| injecagent | 24 | 1.1191 | 1.1105 |
+| injecagent | 25 | 1.1157 | 1.1380 |
+| injecagent | 26 | 1.1095 | 1.1624 |
+| injecagent | 27 | 1.1055 | 1.2033 |
+| injecagent | 28 | 1.1074 | 1.1841 |
+| injecagent | 29 | 1.1053 | 1.2026 |
+| injecagent | 30 | 1.1023 | 1.2324 |

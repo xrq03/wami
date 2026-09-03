@@ -1,0 +1,2 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,num_copies
+AgentDojo,SmoothLLM-style perturbation + qwen-turbo judge,0.88,0.84,0.52,2008.3113699994283,50,25,25,3

@@ -1,0 +1,29 @@
+source,system,benchmark,n,success_rate,retention,false_block_rate,latency_ms,status,source_file,note
+paper_table4,No Defense,ToolBench,,0.685,1.0,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+paper_table4,No Defense,AgentBench,,0.712,1.0,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+paper_table4,+ Erase-and-Check,ToolBench,,0.551,0.804,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+paper_table4,+ Erase-and-Check,AgentBench,,0.576,0.809,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+paper_table4,+ ToolEmu-Sandbox,ToolBench,,0.548,0.800,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+paper_table4,+ ToolEmu-Sandbox,AgentBench,,0.569,0.799,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+paper_table4,+ Llama-Guard 3,ToolBench,,0.614,0.896,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+paper_table4,+ Llama-Guard 3,AgentBench,,0.638,0.896,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+paper_table4,+ WAMI (Ours),ToolBench,,0.680,0.993,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+paper_table4,+ WAMI (Ours),AgentBench,,0.706,0.992,,,paper-reference,data/table4_capability_proxy.md,Original paper reference value.
+local_proxy,+ WAMI (Ours),ToolBench-style proxy,,0.681,0.994,,,proxy,data/table4_capability_proxy.md,Computed from local BIPIA benign allow-rate; not official ToolBench.
+local_proxy,+ WAMI (Ours),AgentBench-style proxy,,0.695,0.977,,,proxy,data/table4_capability_proxy.md,Computed from local AgentDojo benign allow-rate; not official AgentBench.
+local_nonlite_600,No Defense qwen2.5,ToolBench default evalset,600,0.868,1.000,0.000,0.0,qwen2.5-live-agent-nonlite,data/toolbench_default_evalset_qwen25_table4_600_summary.md,600-row local ToolBench default-evalset qwen2.5 planner row.
+local_nonlite_600,Erase-and-Check qwen2.5 judge,ToolBench default evalset,600,0.623,0.718,0.280,638.8,qwen2.5-live-agent-nonlite,data/toolbench_default_evalset_qwen25_table4_600_summary.md,600-row non-Lite qwen2.5 erase-check judge row.
+local_nonlite_600,ToolEmu-Sandbox qwen2.5 judge,ToolBench default evalset,600,0.612,0.704,0.307,742.5,qwen2.5-live-agent-nonlite,data/toolbench_default_evalset_qwen25_table4_600_summary.md,600-row non-Lite qwen2.5 sandbox judge row.
+local_nonlite_600,Llama-Guard 3 8B local/Ollama,ToolBench default evalset,600,0.853,0.983,0.018,196.3,qwen2.5-live-agent-nonlite,data/toolbench_default_evalset_qwen25_table4_600_summary.md,600-row local llama-guard3:8b row.
+local_nonlite_600,WAMI + qwen2.5 local agent,ToolBench default evalset,600,0.860,0.990,0.008,7.2,qwen2.5-live-agent-nonlite,data/toolbench_default_evalset_qwen25_table4_600_summary.md,600-row WAMI qwen2.5 planner action-gateway row.
+local_nonlite,No Defense qwen2.5,ToolBench instruction queries,10,0.400,1.000,0.000,0.0,qwen2.5-live-agent-nonlite,data/toolbench_table4_nonlite_qwen25_structured_summary.md,Structured ToolBench instruction-query qwen2.5 planner row.
+local_nonlite,Erase-and-Check qwen2.5 judge,ToolBench instruction queries,10,0.400,1.000,0.300,635.4,qwen2.5-live-agent-nonlite,data/toolbench_table4_nonlite_qwen25_structured_summary.md,Non-Lite qwen2.5 Erase-and-Check judge row on structured ToolBench plans.
+local_nonlite,ToolEmu-Sandbox qwen2.5 judge,ToolBench instruction queries,10,0.400,1.000,0.300,695.2,qwen2.5-live-agent-nonlite,data/toolbench_table4_nonlite_qwen25_structured_summary.md,Non-Lite qwen2.5 sandbox emulator judge row on structured ToolBench plans.
+local_nonlite,Llama-Guard 3 8B local/Ollama,ToolBench instruction queries,10,0.400,1.000,0.000,935.9,qwen2.5-live-agent-nonlite,data/toolbench_table4_nonlite_qwen25_structured_summary.md,Non-Lite local llama-guard3:8b row on structured ToolBench plans.
+local_nonlite,WAMI + qwen2.5 local agent,ToolBench instruction queries,10,0.400,1.000,0.000,2.6,qwen2.5-live-agent-nonlite,data/toolbench_table4_nonlite_qwen25_structured_summary.md,Structured ToolBench qwen2.5 planner plus WAMI gateway.
+local_nonlite,No Defense qwen2.5,AgentBench-style AgentDojo benign,86,0.907,1.000,0.000,0.0,qwen2.5-live-agent-nonlite,data/agentbench_proxy_table4_nonlite_qwen25_summary.md,AgentBench-style benign trace utility proxy.
+local_nonlite,Erase-and-Check qwen2.5 judge,AgentBench-style AgentDojo benign,86,0.442,0.487,0.535,929.5,qwen2.5-live-agent-nonlite,data/agentbench_proxy_table4_nonlite_qwen25_summary.md,Non-Lite qwen2.5 Erase-and-Check judge on benign live traces.
+local_nonlite,ToolEmu-Sandbox qwen2.5 judge,AgentBench-style AgentDojo benign,86,0.547,0.603,0.430,866.8,qwen2.5-live-agent-nonlite,data/agentbench_proxy_table4_nonlite_qwen25_summary.md,Non-Lite qwen2.5 sandbox judge on benign live traces.
+local_nonlite,Llama-Guard 3 8B local/Ollama,AgentBench-style AgentDojo benign,86,0.802,0.885,0.128,360.1,qwen2.5-live-agent-nonlite,data/agentbench_proxy_table4_nonlite_qwen25_summary.md,Local llama-guard3:8b on benign live traces.
+local_nonlite,WAMI + qwen2.5 local agent,AgentBench-style AgentDojo benign,86,0.895,0.987,0.012,9.6,qwen2.5-live-agent-nonlite,data/agentbench_proxy_table4_nonlite_qwen25_summary.md,WAMI gateway on benign live traces.
+strict_official_gap,All methods,AgentBench official full,,,,,,blocked-local-env,data/table4_official_reproduction_status.md,Requires AgentBench Docker/task containers/model backend; local repo entrypoint is incomplete.

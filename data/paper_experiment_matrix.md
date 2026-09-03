@@ -1,0 +1,24 @@
+# Paper Experiment Implementation Matrix
+
+| Experiment | Item | Status | Output | Missing / Blank To Fill | Note | Run Result |
+|---|---|---|---|---|---|---|
+| Table 1 | WAMI on InjecAgent/BIPIA | implemented | `data/paper_mine_ensemble_sourceaware_triplet_taua45_taub50_results.md` |  | This is the current most faithful WAMI run without direct hard-rule vetoes. |  |
+| Table 1 | GuardReasoner-VL baseline | blank |  | GuardReasoner-VL weights/runtime or API, exact prompt, and benchmark adapter. | Leave blank until the official model/runtime is supplied. |  |
+| Table 1 | WebAgentGuard baseline | partial | `data/webagentguard_paper_method_sample.md` | Official WebAgentGuard checkpoint or exact reasoning guard prompt/model for strict reproduction. | Current code can run a method-shaped proxy, not the official baseline. |  |
+| Table 1 | AgentDojo official replacement for BookAgent | implemented-official-smoke | `data/agentdojo_official_spotlighting_workspace_2x2.md` | For full official AgentDojo reproduction, expand beyond workspace 2x2 to all selected suites/user tasks/injection tasks and decide which official metric maps into Table 1. | This is now an official AgentDojo harness smoke/small run, not the converted-trajectory adaptation. |  |
+| Table 2 | No Defense | implemented | `data/table2_lite_results.md` |  | No Defense is deterministic and needs no external model. |  |
+| Table 2 | Erase-and-Check | partial | `data/table2_official_erase_check_qwen_max_raw.md` | API model/base URL/key and exact mask/reconstruction settings if strict Erase-and-Check is required. | Runnable when API configuration is present; capped by default to protect tokens. |  |
+| Table 2 | SmoothVLM | partial | `data/smoothllm_qwen_judge_random50.md` | Official SmoothVLM visual perturbation code/model for strict multimodal reproduction. | Current runner is a compatible approximation unless official SmoothVLM assets are supplied. |  |
+| Table 2 | ToolEmu-Sandbox | blank |  | ToolEmu official runtime, sandbox LLM/API, tool environment adapter, and scoring config. | Do not fill numbers until the official ToolEmu harness is executable. |  |
+| Table 2 | Llama-Guard 3 8B | blank |  | Llama-Guard 3 8B weights or endpoint, tokenizer, GPU inference config, and score-to-decision mapping. | Left blank because the user previously asked to skip Llama-Guard 3. |  |
+| Table 3 | Cross-backbone GPT-4V | blank |  | GPT-4V-compatible API, exact agent prompt, and generated action trajectories. | WAMI can evaluate trajectories after the backbone produces them. |  |
+| Table 3 | Cross-backbone Llama-3-8B | blank |  | Llama-3-8B or multimodal wrapper endpoint/weights and exact agent prompt. | Needs a backbone trajectory collection run before WAMI scoring. |  |
+| Table 3 | Cross-backbone Qwen-VL-Max | partial | `data/current_cyberseceval3_vpi_qwenvl_40.md` | Qwen-VL-Max API config and exact InjecAgent/BIPIA agent trajectory generation for strict Table 3. | Current Qwen-VL run is multimodal VPI adaptation, not full Table 3. |  |
+| Figure 4 | ROC curves | implemented | `data/paper_mine_v3fast_e4_threshold_curve.md` | Baseline raw scores for Llama-Guard/ToolEmu/SmoothVLM/Erase are blank until those runs exist. | WAMI ROC is available; baseline ROC rows remain blank. |  |
+| Figure 5 | Dynamic threshold sensitivity | implemented | `data/current_wami_extra_injecagent_threshold_sensitivity.md` |  | Score scale differs from the PDF unless the paper-sized torch model is used. |  |
+| Figure 6 | Latency decomposition | implemented | `data/current_wami_extra_injecagent_latency_breakdown.md` | Comparable GPU/server if the exact 85 ms paper latency is required. | Current local latency is a real measurement but not the same hardware/model scale. |  |
+| Figure 7 | VRAM/resource overhead | implemented | `data/wami_resource_profile.md` | CUDA memory profiling and baseline model memory require the corresponding GPU models. | This fills WAMI local resource usage; baseline VRAM stays blank until models exist. |  |
+| Table 4 | ToolBench/AgentBench capability | partial | `data/table4_capability_proxy.md` | Official ToolBench/AgentBench harness, base model, tools, scorer, and answer logs. | Proxy can be reported as proxy only; official SR fields must remain blank. |  |
+| Table 5 | WAMI ablation | implemented | `data/current_wami_paper_ablation_injecagent.md` |  | For final paper, rerun with one chosen paper-faithful checkpoint and fixed protocol. |  |
+| Figure 8 | Shadow adversarial training dynamics | implemented | `data/current_wami_extra_injecagent_training_dynamics.md` |  | Uses local WAMI training dynamics; exact paper-sized torch dynamics require the 4-layer/1024 model run. |  |
+| Multimodal extension | CyberSecEval3 VPI/Qwen-VL | partial | `data/current_cyberseceval3_vpi_qwenvl_40.md` | Native BIPIA multimodal images or a paper-native multimodal split. | Useful supporting experiment, but not a native paper Table 1/2 row. |  |

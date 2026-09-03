@@ -1,0 +1,15 @@
+[project]
+name = "wami-reproduction"
+version = "0.1.0"
+description = "Python reproduction of WAMI: World-model Assisted Multi-modal Intention Alignment"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+torch = ["torch>=2.2"]
+embed = ["pillow>=10.0", "sentence-transformers>=2.7"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

@@ -1,0 +1,14 @@
+dataset,method,input,official_level,ir,fpr,acc,latency_ms,total,attack_n,benign_n,note
+InjecAgent,"WAMI (ours, full model)",WAMI converted intent/plan/TDG,ours-full,0.9606261859582542,0.0,0.9803921568627451,1.2095186156435798,4233,2108,2125,full local WAMI evaluation
+BIPIA,"WAMI (ours, full model)",WAMI converted intent/plan/TDG,ours-full,1.0,0.005833333333333334,0.9970833333333333,1.5370886666642036,2400,1200,1200,full local WAMI evaluation
+AgentDojo,"WAMI (ours, full model)",WAMI converted intent/plan/TDG,ours-full,0.8624338624338624,0.023255813953488372,0.877488514548239,1.688378407358895,653,567,86,full local WAMI evaluation
+InjecAgent,Erase-and-Check official (qwen-max),raw original prompt,official-code + qwen-max,0.96,0.0,0.9701492537313433,2348.673938806477,67,50,17,random sampled raw run
+BIPIA,Erase-and-Check official (qwen-max),raw original prompt,official-code + qwen-max,0.64,0.0,0.82,2767.254794000037,100,50,50,random sampled raw run
+AgentDojo,Erase-and-Check official (qwen-max),raw original prompt,official-code + qwen-max,1.0,0.24,0.88,2305.2066559996456,50,25,25,random sampled raw AgentDojo run
+InjecAgent,SmoothLLM-style perturbation + qwen-max judge,raw original prompt,style-reproduction + qwen-max,1.0,0.4117647058823529,0.8333333333333334,3364.552009523669,42,25,17,SmoothLLM-style perturbation with Qwen judge
+BIPIA,SmoothLLM-style perturbation + qwen-max judge,raw original prompt,style-reproduction + qwen-max,0.96,0.48,0.74,5054.64949000132,50,25,25,SmoothLLM-style perturbation with Qwen judge
+InjecAgent,SmoothLLM-style perturbation + qwen-plus-2025-09-11 judge,raw original prompt,style-reproduction + qwen-plus,1.0,0.29411764705882354,0.8809523809523809,3045.5031976189707,42,25,17,SmoothLLM-style perturbation with Qwen judge
+BIPIA,SmoothLLM-style perturbation + qwen-plus-2025-09-11 judge,raw original prompt,style-reproduction + qwen-plus,0.88,0.44,0.72,3051.770930001221,50,25,25,SmoothLLM-style perturbation with Qwen judge
+InjecAgent,SmoothLLM-style perturbation + qwen-turbo judge,raw original prompt,style-reproduction + qwen-turbo,1.0,0.5882352941176471,0.7619047619047619,2066.1958833342874,42,25,17,SmoothLLM-style perturbation with Qwen judge
+BIPIA,SmoothLLM-style perturbation + qwen-turbo judge,raw original prompt,style-reproduction + qwen-turbo,0.72,0.08,0.82,2068.7569499993697,50,25,25,SmoothLLM-style perturbation with Qwen judge
+AgentDojo,SmoothLLM-style perturbation + qwen-turbo judge,raw original prompt,style-reproduction + qwen-turbo,0.88,0.84,0.52,2008.3113699994283,50,25,25,SmoothLLM-style perturbation with Qwen judge

@@ -1,0 +1,4 @@
+eval_set,ir,fpr,acc,n
+injecagent_wami,1.0,0.0,1.0,64
+bipia_wami,1.0,0.0,1.0,64
+agentdojo_wami,1.0,0.0,1.0,64

@@ -1,0 +1,5 @@
+# Paper Experiment Implementation Matrix
+
+| Experiment | Item | Status | Output | Missing / Blank To Fill | Note | Run Result |
+|---|---|---|---|---|---|---|
+| Figure 7 | VRAM/resource overhead | implemented | `data/wami_resource_profile.md` | CUDA memory profiling and baseline model memory require the corresponding GPU models. | This fills WAMI local resource usage; baseline VRAM stays blank until models exist. | ok: / Dataset / N / Model MB / Load ms / Avg ms / P50 ms / P95 ms / Peak alloc MB / RSS load delta MB / RSS eval delta MB / IR / FPR / ACC / / /---/---:/---:/---:/---:/---:/---:/---:/---:/---:/---:/---:/---:/ / / InjecAgent / 1000 / 0.443 / 41.907 / 11.201 / 10.657 / 17.375 / 1.759 / 0.000 / 0.000 / 100.0% / 0.0% / 100.0% / / / BIPIA / 1000 / 0.443 / 5.165 / 16.988 / 15.388 / 33.294 / 0.660 / 0.000 / 0.000 / 100.0% / 1.2% / 99.4% / / / AgentDojo / 653 / 0.443 / 4.945 / 21.327 / 15.222 / 55.499 / 0.660 / 0.000 / 0.000 / 82.2% / 1.2% / 84.4% / / saved markdown to data/wami_resource_profile.md / saved csv to data/wami_resource_profile.csv |

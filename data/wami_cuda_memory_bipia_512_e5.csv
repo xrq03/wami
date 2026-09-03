@@ -1,0 +1,2 @@
+method,model,device,samples,allocated_mb,reserved_mb,peak_allocated_mb,peak_reserved_mb
+WAMI paper-strict torch inference,wami_paper_strict_bipia_512_e5_cuda.pt,NVIDIA GeForce RTX 5070 Laptop GPU,50,335.81982421875,356.0,335.96484375,356.0

@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,level
+BIPIA,AgentDojo spotlighting_with_delimiting,1.0,0.0,1.0,0.06394137499834567,2400,1200,1200,AgentDojo official defense idea adapted to converted trajectories
+InjecAgent,AgentDojo spotlighting_with_delimiting,0.14516129032258066,0.0,0.5742971887550201,0.03176350106104343,4233,2108,2125,AgentDojo official defense idea adapted to converted trajectories
+AgentDojo,AgentDojo spotlighting_with_delimiting,0.8359788359788359,0.0,0.8575803981623277,0.04612940275695055,653,567,86,AgentDojo official defense idea adapted to converted trajectories

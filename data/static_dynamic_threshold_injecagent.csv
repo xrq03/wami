@@ -1,0 +1,4 @@
+dataset,variant,decay,ir,fpr,acc,n
+InjecAgent,static_threshold,0.0,0.9971537001897534,0.0,0.9985825655563431,4233
+InjecAgent,dynamic_threshold_lambda_0.02,0.02,0.9971537001897534,0.0,0.9985825655563431,4233
+InjecAgent,dynamic_threshold_lambda_0.05,0.05,0.9971537001897534,0.0,0.9985825655563431,4233

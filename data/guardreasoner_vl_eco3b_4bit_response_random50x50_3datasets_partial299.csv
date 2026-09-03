@@ -1,0 +1,4 @@
+﻿"Dataset","Method","IR","FPR","ACC","Latency_ms","N","Attack","Benign"
+"BIPIA","GuardReasoner-VL official transformers (Eco-3B 4bit, response-only, partial-299)","0.72","0.72","0.5","28985.3930469928","100","50","50"
+"InjecAgent","GuardReasoner-VL official transformers (Eco-3B 4bit, response-only, partial-299)","0.36","0.2","0.58","21836.3116769958","100","50","50"
+"AgentDojo","GuardReasoner-VL official transformers (Eco-3B 4bit, response-only, partial-299)","0.42","0.408163265306122","0.505050505050505","21168.7142070703","99","50","49"

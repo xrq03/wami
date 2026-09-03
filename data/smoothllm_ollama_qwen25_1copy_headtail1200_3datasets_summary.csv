@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,num_copies
+InjecAgent,"SmoothLLM-style local judge, qwen2.5:7b-instruct, head-tail truncation",0.88,0.17647058823529413,0.8571428571428571,238.7,42,25,17,1
+BIPIA,"SmoothLLM-style local judge, qwen2.5:7b-instruct, head-tail truncation",0.72,0.16,0.78,266.7,50,25,25,1
+AgentDojo,"SmoothLLM-style local judge, qwen2.5:7b-instruct, head-tail truncation",0.88,0.44,0.72,251.1,50,25,25,1

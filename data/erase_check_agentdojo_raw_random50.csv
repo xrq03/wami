@@ -1,0 +1,2 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n
+AgentDojo,Erase-and-Check official (qwen-max),1.0,0.24,0.88,2305.2066559996456,50,25,25

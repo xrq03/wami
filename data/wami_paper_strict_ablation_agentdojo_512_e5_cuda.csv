@@ -1,0 +1,6 @@
+variant,ir,fpr,acc,latency_ms,total
+WAMI (Full Model),1.0,0.0,1.0,19.04643600108102,100
+w/o TDG Graph Construction,0.0,0.0,0.16,5.235479000257328,100
+w/o World Model Rollout,1.0,0.0,1.0,3.5838330001570284,100
+w/o MINE Gateway (Cosine Similarity),1.0,0.0,1.0,14.808674999512732,100
+w/o Shadow Adversarial Training,1.0,0.0,1.0,18.986010999651626,100

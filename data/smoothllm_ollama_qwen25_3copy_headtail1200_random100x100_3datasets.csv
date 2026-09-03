@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,num_copies
+InjecAgent,SmoothLLM-style perturbation + qwen2.5:7b-instruct judge (2/3 vote),0.86,0.17647058823529413,0.8547008547008547,753.1898136750166,117,100,17,3
+BIPIA,SmoothLLM-style perturbation + qwen2.5:7b-instruct judge (2/3 vote),0.55,0.14,0.705,940.2151264983695,200,100,100,3
+AgentDojo,SmoothLLM-style perturbation + qwen2.5:7b-instruct judge (2/3 vote),0.93,0.43023255813953487,0.7634408602150538,637.046008605525,186,100,86,3

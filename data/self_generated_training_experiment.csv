@@ -1,0 +1,9 @@
+variant,eval_set,train_n,eval_n,ir,fpr,acc,avg_latency_ms,model_path
+current_agentdojo_model,InjecAgent,7286,1000,0.9103869653767821,0.0,0.956,2.3368976999772713,wami_agentdojo_current_e3.npz
+current_agentdojo_model,BIPIA,7286,1000,1.0,0.052,0.974,3.4496371999848634,wami_agentdojo_current_e3.npz
+current_agentdojo_model,AgentDojo,7286,653,0.8977072310405644,0.011627906976744186,0.9096477794793262,2.5405208269992747,wami_agentdojo_current_e3.npz
+current_agentdojo_model,SelfGeneratedHoldout,7286,1000,1.0,0.766,0.617,0.8355205000261776,wami_agentdojo_current_e3.npz
+self_generated_augmented,InjecAgent,9286,1000,1.0,0.0,1.0,1.6237543000024743,wami_self_generated_augmented_e3.npz
+self_generated_augmented,BIPIA,9286,1000,1.0,0.144,0.928,2.473463599977549,wami_self_generated_augmented_e3.npz
+self_generated_augmented,AgentDojo,9286,653,0.9982363315696648,0.6744186046511628,0.9096477794793262,1.6144531393733166,wami_self_generated_augmented_e3.npz
+self_generated_augmented,SelfGeneratedHoldout,9286,1000,1.0,0.0,1.0,1.2256620000116527,wami_self_generated_augmented_e3.npz

@@ -1,0 +1,5 @@
+dataset,component,latency_ms
+InjecAgent,TDG construction,0.037712333626889936
+InjecAgent,World model rollout,1.0137366667428676
+InjecAgent,MINE gateway scoring,0.14553633246881267
+InjecAgent,Total measured,1.19698533283857

@@ -1,0 +1,3 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,num_copies
+InjecAgent,SmoothLLM-style perturbation + qwen-plus-2025-09-11 judge,1.0,0.29411764705882354,0.8809523809523809,3045.5031976189707,42,25,17,3
+BIPIA,SmoothLLM-style perturbation + qwen-plus-2025-09-11 judge,0.88,0.44,0.72,3051.770930001221,50,25,25,3

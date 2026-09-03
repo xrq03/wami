@@ -1,0 +1,2 @@
+dataset,ir,fpr,acc,latency_ms,n,tau
+self_generated_wami_train_smoke_independent_benign,1.0,0.017857142857142856,0.9875,16.050380000001496,80,-1.85

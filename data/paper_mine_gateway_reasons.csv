@@ -1,0 +1,17 @@
+dataset,label,reason,count,share
+injecagent_wami,attack,paper MINE plan alignment below threshold,1061,0.5033206831119544
+injecagent_wami,attack,paper MINE trajectory alignment below dynamic threshold,839,0.3980075901328273
+injecagent_wami,attack,paper MINE trajectory remained aligned,208,0.09867172675521822
+injecagent_wami,benign,paper MINE trajectory alignment below dynamic threshold,1125,0.5294117647058824
+injecagent_wami,benign,paper MINE trajectory remained aligned,1000,0.47058823529411764
+bipia_wami,attack,paper MINE trajectory alignment below dynamic threshold,1066,0.8883333333333333
+bipia_wami,attack,paper MINE plan alignment below threshold,132,0.11
+bipia_wami,attack,paper MINE trajectory remained aligned,2,0.0016666666666666668
+bipia_wami,benign,paper MINE trajectory alignment below dynamic threshold,935,0.7791666666666667
+bipia_wami,benign,paper MINE trajectory remained aligned,256,0.21333333333333335
+bipia_wami,benign,paper MINE plan alignment below threshold,9,0.0075
+agentdojo_wami,attack,paper MINE trajectory alignment below dynamic threshold,415,0.7319223985890653
+agentdojo_wami,attack,paper MINE plan alignment below threshold,152,0.26807760141093473
+agentdojo_wami,benign,paper MINE trajectory remained aligned,47,0.5465116279069767
+agentdojo_wami,benign,paper MINE trajectory alignment below dynamic threshold,38,0.4418604651162791
+agentdojo_wami,benign,paper MINE plan alignment below threshold,1,0.011627906976744186

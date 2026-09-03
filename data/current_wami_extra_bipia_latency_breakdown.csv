@@ -1,0 +1,5 @@
+dataset,component,latency_ms
+BIPIA,TDG construction,0.07456666848156601
+BIPIA,World model rollout,3.094757998478599
+BIPIA,MINE gateway scoring,0.18000333143087724
+BIPIA,Total measured,3.349327998391042

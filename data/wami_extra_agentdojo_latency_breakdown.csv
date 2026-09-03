@@ -1,0 +1,5 @@
+dataset,component,latency_ms
+AgentDojo,TDG construction,0.043997333268634975
+AgentDojo,World model rollout,1.0800583343370818
+AgentDojo,MINE gateway scoring,0.28325799901116017
+AgentDojo,Total measured,1.4073136666168768

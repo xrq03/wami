@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack,benign
+BIPIA,ToolEmu-Sandbox-style local (tau=10),0.14,0.0,0.57,0.26757950021419674,200,100,100
+InjecAgent,ToolEmu-Sandbox-style local (tau=10),0.46,0.0,0.73,0.18102800066117197,200,100,100
+AgentDojo,ToolEmu-Sandbox-style local (tau=10),0.69,0.0,0.8333333333333334,0.20379462324443362,186,100,86

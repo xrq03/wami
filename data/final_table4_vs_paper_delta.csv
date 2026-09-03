@@ -1,0 +1,8 @@
+comparison,benchmark_or_method,n,paper_success_rate,local_success_rate,delta_success_pp,paper_retention,local_retention,delta_retention_pp,local_false_block_rate,status,note
+WAMI proxy vs paper,ToolBench,,0.680,0.681,0.1,0.993,0.994,0.1,,proxy,Close numerically but local value is benign allow-rate proxy.
+WAMI proxy vs paper,AgentBench,,0.706,0.695,-1.1,0.992,0.977,-1.5,,proxy,Close numerically but local value is benign allow-rate proxy.
+ToolBench data_example vs paper,No Defense,15,0.685,0.600,-8.5,1.000,1.000,0.0,0.000,official-format-small,Real ToolBench-format small sample; N=15 only.
+ToolBench data_example vs paper,Erase-and-Check Lite,15,0.551,0.600,4.9,0.804,1.000,19.6,0.000,local-lite,Lite method on ToolBench data_example; not full official benchmark.
+ToolBench data_example vs paper,ToolEmu-Sandbox Lite,15,0.548,0.600,5.2,0.800,1.000,20.0,0.000,local-lite,Lite method on ToolBench data_example; not full official benchmark.
+ToolBench data_example vs paper,Llama-Guard 3 8B local/Ollama,15,0.614,0.600,-1.4,0.896,1.000,10.4,0.000,local-official-model,Local Ollama llama-guard3:8b on ToolBench data_example.
+ToolBench data_example vs paper,WAMI InjecAgent model,15,0.680,0.533,-14.7,0.993,0.889,-10.4,0.133,official-format-small,Current reproducible WAMI result under scripts/run_toolbench_table4_all_methods.py.

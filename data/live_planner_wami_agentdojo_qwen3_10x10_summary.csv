@@ -1,0 +1,2 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,planner_refusal_rate,next_tool_match_rate,planner_risk_rate,wami_action_block_rate,status
+AgentDojo,Live planner + WAMI (qwen3-32b),0.1,0.0,0.55,1983.1174700055271,20,10,10,0.0,0.1,0.1,1.0,live-planner-action-level

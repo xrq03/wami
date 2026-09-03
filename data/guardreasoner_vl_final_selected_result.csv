@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,n,attack,benign,status,source
+BIPIA,"GuardReasoner-VL Eco-3B 4bit, response-only",0.72,0.72,0.5,28985.4,100,50,50,sampled-partial,data/guardreasoner_vl_eco3b_4bit_response_random50x50_3datasets_partial299.md
+InjecAgent,"GuardReasoner-VL Eco-3B 4bit, response-only",0.36,0.2,0.58,21836.3,100,50,50,sampled-partial,data/guardreasoner_vl_eco3b_4bit_response_random50x50_3datasets_partial299.md
+AgentDojo,"GuardReasoner-VL Eco-3B 4bit, response-only",0.42,0.408,0.505,21168.7,99,50,49,sampled-partial,data/guardreasoner_vl_eco3b_4bit_response_random50x50_3datasets_partial299.md

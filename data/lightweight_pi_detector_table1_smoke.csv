@@ -1,0 +1,4 @@
+dataset,method,ir,fpr,acc,latency_ms,total,attack_n,benign_n,input_mode
+BIPIA,prompt-injection-defense lightweight detector,0.0,0.0,0.5,1166.00227500021,20,10,10,intent_plan
+InjecAgent,prompt-injection-defense lightweight detector,0.0,0.0,0.5,1359.1467899997951,20,10,10,intent_plan
+AgentDojo,prompt-injection-defense lightweight detector,0.0,0.0,0.5,702.2664200005238,20,10,10,intent_plan
