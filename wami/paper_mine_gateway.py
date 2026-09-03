@@ -26,8 +26,9 @@ class PaperMINEConfig:
     transition_fusion: float = 0.35
     use_auxiliary_heads: bool = False
     auxiliary_fusion: float = 0.20
-    use_来源memory_memory: bool = False
-    来源memory_fusion: float = 0.10
+    # 配置名与运行脚本保持一致；中文说明不能改动模型接口名称。
+    use_provenance_memory: bool = False
+    provenance_fusion: float = 0.10
 
 
 class PaperMINEGateway:
@@ -115,19 +116,19 @@ class PaperMINEGateway:
                 score = (1.0 - fusion) * score + fusion * aux_score
                 if aux_score < score:
                     reason = "paper MINE source-aware auxiliary alignment below dynamic threshold"
-            if self.config.use_来源memory_memory and hasattr(self.model, "来源memory_scores") and "memory" in item:
-                trusted, untrusted, instruction, sensitive = self.model.来源memory_scores(
+            if self.config.use_provenance_memory and hasattr(self.model, "provenance_scores") and "memory" in item:
+                trusted, untrusted, instruction, sensitive = self.model.provenance_scores(
                     intent_vec,
                     item["action"],
                     item["observation"],
                     item["memory"],
                     item["state"],
                 )
-                来源memory_score = trusted - 0.5 * untrusted - instruction - 0.5 * sensitive
-                fusion = min(1.0, max(0.0, self.config.来源memory_fusion))
-                score = (1.0 - fusion) * score + fusion * 来源memory_score
-                if 来源memory_score < score:
-                    reason = "paper MINE 来源memory memory alignment below dynamic threshold"
+                provenance_score = trusted - 0.5 * untrusted - instruction - 0.5 * sensitive
+                fusion = min(1.0, max(0.0, self.config.provenance_fusion))
+                score = (1.0 - fusion) * score + fusion * provenance_score
+                if provenance_score < score:
+                    reason = "paper MINE provenance memory alignment below dynamic threshold"
             threshold = self.threshold(step)
             threshold += self._risk_margin(helper, node.tool, str(node.params), seen_untrusted)
             last_score, last_threshold = score, threshold

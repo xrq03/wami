@@ -44,7 +44,7 @@ def train_shadow_torch(
     attack_target_score: float = -3.5,
     transition_weight: float = 0.25,
     auxiliary_weight: float = 0.20,
-    来源memory_weight: float = 0.15,
+    provenance_weight: float = 0.15,
     slot_specific_weight: float = 0.15,
     subgoal_weight: float = 0.15,
     progress_callback: Callable[[TorchTrainStats], None] | None = None,
@@ -88,8 +88,8 @@ def train_shadow_torch(
             transition_neg_scores = []
             aux_logits = []
             aux_labels = []
-            来源memory_logits = []
-            来源memory_labels = []
+            provenance_logits = []
+            provenance_labels = []
             slot_logits = []
             slot_labels = []
             subgoal_positive = []
@@ -126,8 +126,8 @@ def train_shadow_torch(
                     )
                     aux_logits.append(model.net.aux_logits(intent_vec, item["previous_state"], item["action"], item["observation"], item["state"]))
                     aux_labels.append(_aux_labels(item["node"].tool, str(item["node"].params), sample.label, seen_attack=False))
-                    来源memory_logits.append(
-                        model.net.来源memory_logits(
+                    provenance_logits.append(
+                        model.net.provenance_logits(
                             intent_vec,
                             item["action"],
                             item["observation"],
@@ -135,8 +135,8 @@ def train_shadow_torch(
                             item["state"],
                         )
                     )
-                    来源memory_labels.append(
-                        _来源memory_labels(
+                    provenance_labels.append(
+                        _provenance_labels(
                             item["node"].tool,
                             str(item["node"].params),
                             sample.label,
@@ -202,8 +202,8 @@ def train_shadow_torch(
                                 seen_attack=seen_attack_transition,
                             )
                         )
-                        来源memory_logits.append(
-                            model.net.来源memory_logits(
+                        provenance_logits.append(
+                            model.net.provenance_logits(
                                 attack_intent,
                                 attack_item["action"],
                                 attack_item["observation"],
@@ -211,8 +211,8 @@ def train_shadow_torch(
                                 attack_item["state"],
                             )
                         )
-                        来源memory_labels.append(
-                            _来源memory_labels(
+                        provenance_labels.append(
+                            _provenance_labels(
                                 attack_item["node"].tool,
                                 str(attack_item["node"].params),
                                 attack.label,
@@ -271,15 +271,15 @@ def train_shadow_torch(
                 auxiliary_loss = source_loss + drift_loss + sink_auth_loss
             else:
                 auxiliary_loss = torch.tensor(0.0, device=model.config.device)
-            if 来源memory_logits:
-                来源memory_pred = torch.stack(来源memory_logits)
-                来源memory_target = torch.tensor(来源memory_labels, dtype=torch.float32, device=model.config.device)
-                来源memory_loss = torch.nn.functional.binary_cross_entropy_with_logits(
-                    来源memory_pred,
-                    来源memory_target,
+            if provenance_logits:
+                provenance_pred = torch.stack(provenance_logits)
+                provenance_target = torch.tensor(provenance_labels, dtype=torch.float32, device=model.config.device)
+                provenance_loss = torch.nn.functional.binary_cross_entropy_with_logits(
+                    provenance_pred,
+                    provenance_target,
                 )
             else:
-                来源memory_loss = torch.tensor(0.0, device=model.config.device)
+                provenance_loss = torch.tensor(0.0, device=model.config.device)
             if slot_logits:
                 slot_pred = torch.stack(slot_logits)
                 slot_target = torch.tensor(slot_labels, dtype=torch.float32, device=model.config.device)
@@ -313,7 +313,7 @@ def train_shadow_torch(
                 + attack_recall_weight * attack_recall_loss
                 + transition_weight * transition_loss
                 + auxiliary_weight * auxiliary_loss
-                + 来源memory_weight * 来源memory_loss
+                + provenance_weight * provenance_loss
                 + slot_specific_weight * slot_specific_loss
                 + subgoal_weight * subgoal_loss
                 + variance_penalty
@@ -389,7 +389,7 @@ def _aux_labels(tool: str, params: str, label: int, seen_attack: bool) -> tuple[
     return float(external), float(drift), float(sink_auth)
 
 
-def _来源memory_labels(tool: str, params: str, label: int, seen_attack: bool) -> tuple[float, float, float, float]:
+def _provenance_labels(tool: str, params: str, label: int, seen_attack: bool) -> tuple[float, float, float, float]:
     """函数说明。
     
     这个函数属于最终认可实验流程的一部分。它负责读取数据、构造输入、执行检测、调用模型或汇总指标中的一个环节。函数输出会继续传给后续评估、表格生成或 Excel 审计流程。"""

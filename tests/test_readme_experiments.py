@@ -38,6 +38,17 @@ class ReadmeExperimentTests(unittest.TestCase):
         self.assertGreaterEqual(len(commands), 25)
         self.assertEqual(check_commands(commands, ROOT), [])
 
+    def test_supervisor_guide_commands(self):
+        """导师指南必须有可检查的真实实验命令，并使用本地 Ollama 后端。"""
+        guide = (ROOT / "docs/supervisor-guide.md").read_text(encoding="utf-8")
+        commands = read_commands(guide)
+        self.assertGreaterEqual(len(commands), 4)
+        self.assertEqual(check_commands(commands, ROOT), [])
+        live = [c for c in commands if c.script.endswith('run_qwen_full_live_wami_runtime.py')]
+        self.assertEqual(len(live), 1)
+        self.assertIn('ollama', live[0].arguments)
+        self.assertIn('qwen2.5:7b-instruct', live[0].arguments)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,216 @@
+# 给导师的运行指南
+
+老师您好，第一次运行只需要跟着第 1～5 步操作。先用三个数据集各 10 条数据检查流程，确认能得到结果后，再决定是否跑全量。**不用重新训练，不用购买 API，也不用下载所有对比模型。**
+
+默认运行的是：本地 Qwen2.5 生成下一步动作 → WAMI 检查 → 本地工具模拟器继续执行。不会真的发邮件、转账或操作外部账号。
+
+## 1. 下载项目
+
+打开 [GitHub 仓库](https://github.com/xrq03/wami)，点绿色的 **Code → Download ZIP**，解压到例如 `D:\wami`。下面说的“项目目录”，就是能直接看到 `README.md`、`scripts`、`wami`、`data` 的那一层，不是外面多套的一层文件夹。
+
+仓库目前是私有的。看见 404 时，需要先让作者邀请您的 GitHub 账号，再登录下载；不是链接失效。
+
+准备 Windows、Python 3.12 和 NVIDIA 显卡。这里按现有 CUDA 权重的运行方式写，**没有验证无 NVIDIA 显卡的电脑能直接运行这套命令**。只有普通办公电脑时，可以在作者已配置的机器上运行，不要先花时间下载全部模型。
+
+建议预留 25 GB 以上磁盘空间，实际占用取决于模型、缓存和环境。建议 32 GB 内存；显存是否够用先以小样本测试为准，这不是已测定的最低硬件要求。
+
+## 2. 安装 Python 环境
+
+安装 Python 3.12 后，在项目目录打开 **PowerShell**，逐段执行。第一行的路径换成实际解压位置：
+
+```powershell
+cd D:\wami
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install numpy==2.4.4
+.\.venv\Scripts\python.exe -m pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
+$env:Path = "$PWD\.venv\Scripts;$env:Path"
+python -c "import sys, torch; print(sys.executable); print(torch.__version__); print('CUDA:', torch.cuda.is_available())"
+```
+
+最后应看到项目内的 `.venv\Scripts\python.exe`、PyTorch 版本和 `CUDA: True`。如果是 `False`，先解决驱动或 PyTorch 安装问题，不要继续跑模型。
+
+这一步只装 WAMI live-agent 必需的 NumPy 和 PyTorch，避免第一次就安装所有 baseline 的依赖。上述版本来自本机验证环境；CUDA wheel 安装方式也可核对 [PyTorch 官方说明](https://pytorch.org/get-started/previous-versions/#v2110)。
+
+没有执行 `Activate.ps1`，因此不需要修改 PowerShell 执行策略。**每次重新打开 PowerShell**，先进入项目目录，再执行一次 `$env:Path = "$PWD\.venv\Scripts;$env:Path"`。已有 `.venv` 不用重复创建。
+
+## 3. 准备两个 WAMI 权重和一个 Qwen 模型
+
+### WAMI 权重
+
+打开 [权重下载页面](https://github.com/xrq03/wami/releases/tag/runtime-assets-20260903)，在 Assets 中下载下面两个文件，直接放到项目目录，和 README 同级：
+
+```text
+wami_paper_strict_shadowv2_b70_e3_cuda.pt
+wami_paper_strict_shadowv3_targeted_e2_cuda.pt
+```
+
+两份合计约 654 MiB。不要改文件名，也不要放进 `models` 子文件夹。然后检查：
+
+```powershell
+python scripts/check_runtime_resources.py --group wami-live --verify-hashes
+Test-Path data/bipia_wami.jsonl
+Test-Path data/injecagent_wami.jsonl
+Test-Path data/agentdojo_wami.jsonl
+```
+
+权重检查不能有缺失或哈希不匹配；后面三个结果应该都是 `True`。测试数据已经在仓库里，不用重新下载或转换。
+
+### Qwen 模型
+
+按 [Ollama Windows 安装说明](https://docs.ollama.com/windows)安装并启动 Ollama。重新打开终端后，记得回到项目目录并设置上面的 Python 路径。
+
+如果要把模型放在 D 盘：先退出托盘里的 Ollama，在 Windows 的“编辑账户的环境变量”中新建用户变量 `OLLAMA_MODELS`，值填 `D:\OllamaModels`，然后重新启动 Ollama。这个设置作用于 Ollama 服务，不是 Python 程序，见 [Ollama 模型目录说明](https://docs.ollama.com/faq#where-are-models-stored)。
+
+```powershell
+ollama list
+ollama pull qwen2.5:7b-instruct
+ollama run qwen2.5:7b-instruct "Reply with OK."
+```
+
+`ollama list` 已有这个模型时，跳过 `pull`。本机这份模型约 4.7 GB；`pull` 会显示下载进度。最后一条是模型连通测试，能收到回复即可。默认服务地址为 `http://127.0.0.1:11434`。
+
+## 4. 先跑三个数据集，各 10 条
+
+确认还在项目目录，完整执行下面这一段。它会**依次**跑 BIPIA、InjecAgent、AgentDojo，每集 5 条攻击 + 5 条正常，共 30 条，不会同时启动三个模型任务。
+
+```powershell
+$out = "data/supervisor_runs/$(Get-Date -Format 'yyyyMMdd_HHmmss')"
+New-Item -ItemType Directory -Path $out -ErrorAction Stop | Out-Null
+$steps = @{ BIPIA = 3; InjecAgent = 4; AgentDojo = 6 }
+foreach ($dataset in @('BIPIA', 'InjecAgent', 'AgentDojo')) {
+  python scripts/run_qwen_full_live_wami_runtime.py `
+    --provider ollama --model qwen2.5:7b-instruct `
+    --dataset $dataset --attack-limit 5 --benign-limit 5 `
+    --planner-mode max-directive-parser --planner-retries 2 `
+    --bootstrap-first-observation --max-steps $steps[$dataset] `
+    --model-a wami_paper_strict_shadowv2_b70_e3_cuda.pt --tau-a -5.85 `
+    --model-b wami_paper_strict_shadowv3_targeted_e2_cuda.pt --tau-b -3.75 `
+    --ensemble-mode or --risk-margin 0 --passive-margin 0.15 `
+    --planner-timeout-sec 300 --trace-detail-limit 10 `
+    --output-csv "$out/$dataset.csv" --output-md "$out/$dataset.md"
+  if ($LASTEXITCODE -ne 0) { throw "$dataset 运行失败，请保留上方报错。" }
+}
+Write-Host "本次结果目录：$out"
+```
+
+运行中会出现 `[1/10]`、`[2/10]` 等进度；这是已完成的样本数。第一次加载模型可能较慢，每条样本需要生成多步动作。等待期间不要重复启动同一个实验。
+
+这组设置沿用已记录的 Qwen boost 流程：先放入第一个工具返回，再让强化指令解析 prompt 生成动作，供 WAMI 检查。**这是压力场景，不是普通 Qwen 助手的默认安全行为。** 这里没有开启额外的 `--use-runtime-flow-check` 强规则开关。
+
+小测试按数据文件顺序各取前 5 条，不是随机抽样；它只验证程序能跑通，不能拿 30 条结果当成论文全量结论。
+
+## 5. 结果怎么看
+
+打开刚才打印的目录，例如 `data/supervisor_runs/20260903_153000/`：
+
+| 文件 | 用途 |
+|---|---|
+| `BIPIA.md`、`InjecAgent.md`、`AgentDojo.md` | 本次统计表和前 10 条判断，先看这些 |
+| 同名 `.csv` | 本次全部逐条记录，可以用 Excel 打开 |
+
+`.md` 在 PyCharm 的预览或文本编辑器中都能看。每次生成新目录，不覆盖原来的实验结果。成功时终端会显示统计表和两个 `saved ...` 路径；**当前入口在一个数据集跑完后才写文件，不支持中途断点续跑。**
+
+统计表里的列：
+
+| 列名 | 白话解释 |
+|---|---|
+| N | 本次实际测了多少条，不是数据集总量 |
+| IR | 全部攻击样本中，运行被 WAMI 拦截的比例 |
+| FPR | 正常样本中，被 WAMI 误拦的比例 |
+| ACC | 按攻击/正常标签计算的样本判断准确率 |
+| 智能体危险 action 生成率 | 攻击样本中，Qwen 至少产生一次被运行时判定为危险动作的样本比例 |
+| WAMI action 级 block 率 | 上述产生危险动作的攻击样本中，至少一次危险动作被 WAMI 拦住的比例 |
+| Latency ms | 平均每条样本耗时，包括本地 Qwen 推理和运行循环，不只是 WAMI 耗时 |
+
+**注意分母：**代码当前的“action 级 block 率”实际按“产生危险动作的样本”计数，不是把每一次动作事件加起来。它与 IR 不一样，不能互相替换名称。若没有产生危险动作，代码会显示 0%，此时应读成“没有可评价的危险样本”，不能说 WAMI 漏拦了全部攻击。
+
+CSV 中 `label=1` 是攻击，`label=0` 是正常；`blocked=True` 表示拦截。`reason` 是停止原因，`raw_last_action` 是最后的动作输出，`trace_plan` 是实际生成的轨迹。`index` 对应统一格式 JSONL 的从 0 开始的行号，能据此找到原始请求和计划。CSV 不包含完整官方原始记录。
+
+如果 `reason` 出现 planner 错误/超时，先排查，不要把故障批次直接当成模型性能结果。不要运行固定读取旧 CSV 的汇总脚本来代替本次输出。
+
+## 6. 跑几百条或全量
+
+几百条：将第 4 步中的两个 `5` 改成 `100`，重新执行整段，生成新目录。AgentDojo 正常样本只有 86 条，所以这集实际是 186 条，而不是 200 条。
+
+全量：将两个 `5` 都改成 `100000`，其余参数保持不变。脚本只会取到文件实际有的数据，不会生成十万条新样本。实际数量如下：
+
+| 数据集 | 攻击 | 正常 | 合计 | 最大动作步数 |
+|---|---:|---:|---:|---:|
+| BIPIA | 1200 | 1200 | 2400 | 3 |
+| InjecAgent | 2108 | 2125 | 4233 | 4 |
+| AgentDojo | 567 | 86 | 653 | 6 |
+| 总计 | 3875 | 3411 | 7286 | |
+
+全量可能需要数小时，取决于 GPU、上下文长度和重试情况。先根据本机小批量时间估算，不把历史机器的耗时当成保证。运行期间保持 Ollama 和终端开启，避免电脑休眠。
+
+**这里是重新运行当前代码，不是把论文数字打印一遍。** 权重、prompt、软件和数据版本会影响结果；新结果不同应保留并检查，不能为了对齐论文数字改预测。以上是 boost 设置，也不等于所有历史 `full_live` CSV 的启动配置。
+
+## 7. 只想用 PyCharm 点运行
+
+用 PyCharm 打开整个项目，不是单独打开一个 `.py`。进入 **Run → Edit Configurations → + → Python**，填：
+
+| 设置项 | 填什么 |
+|---|---|
+| Python interpreter | 项目里的 `.venv\Scripts\python.exe` |
+| Script path | 项目里的 `scripts\run_qwen_full_live_wami_runtime.py` |
+| Working directory | 项目根目录，例如 `D:\wami` |
+| Parameters | 下方这一整行，不能留空 |
+
+```text
+--provider ollama --model qwen2.5:7b-instruct --dataset InjecAgent --attack-limit 5 --benign-limit 5 --planner-mode max-directive-parser --planner-retries 2 --bootstrap-first-observation --max-steps 4 --model-a wami_paper_strict_shadowv2_b70_e3_cuda.pt --tau-a -5.85 --model-b wami_paper_strict_shadowv3_targeted_e2_cuda.pt --tau-b -3.75 --ensemble-mode or --risk-margin 0 --passive-margin 0.15 --output-csv data/supervisor_pycharm/injecagent.csv --output-md data/supervisor_pycharm/injecagent.md
+```
+
+点击绿色运行按钮即可。此配置只跑 InjecAgent；另外两集更改 `--dataset`、`--max-steps` 和两个输出文件名。**重复运行这个固定配置会覆盖同名文件**，需要保留结果时换输出目录。想一次跑三个，就在 PyCharm 的 PowerShell Terminal 执行第 4 步。
+
+## 8. 其他表格怎么跑
+
+第一次验收完成后，再按需要增加实验，不用一开始全部做。完整命令已在 README 中对应的小节列好，按下表进入即可。先执行环境章节的 Python 路径设置，README 的命令也都在项目根目录运行。
+
+| 要复查的内容 | 运行入口 | 命令和额外准备 |
+|---|---|---|
+| 表 1/2 的静态 WAMI | `run_paper_mine_ensemble.py` | [检查已有计划](../README.md#检查已有计划)；另下载 sourceaware、triplet 两份 `.pt`，不调用 Qwen；不能与上面的 live 结果混用 |
+| 表 1 GuardReasoner-VL | `run_guardreasoner_vl_table1.py` | [GuardReasoner-VL](../README.md#guardreasoner-vl)；需要 HF 权重和 4bit 依赖，不是 Ollama Qwen |
+| 表 1 WebAgentGuard | `run_webagentguard_paper_method.py`，随后 `summarize_webagentguard_operating_points.py` | [WebAgentGuard](../README.md#webagentguard)；使用已下载的 Qwen2.5 |
+| 表 1 AgentDojo detector | `run_agentdojo_official_detector_on_wami_datasets.py` | [AgentDojo PI detector](../README.md#agentdojo-pi-detector)；另下 DeBERTa，安装官方组件依赖 |
+| BookAgent-style | `run_bookagent_constraint_verifier.py` | [约束验证](../README.md#bookagent-style-约束验证)；无需 LLM |
+| Llama-Guard 3 | `run_llamaguard3_ollama_on_datasets.py` | [Llama-Guard 3](../README.md#llama-guard-3)；另下 `llama-guard3:8b` |
+| 表 2 SmoothLLM-style | `run_smoothllm_qwen_judge_on_datasets.py` | [SmoothLLM-style](../README.md#smoothllm-style)；使用 Qwen2.5 |
+| 表 2 Erase-and-Check | `run_table2_official_erase_check.py` | [Erase-and-Check](../README.md#erase-and-check)；使用 Qwen2.5，注意 plan/raw 分支不同 |
+| ToolEmu-Sandbox | `run_toolemu_sandbox_table2.py` | [ToolEmu-Sandbox](../README.md#toolemu-sandbox适配)；当前表格入口是本地评分适配，不是官方 LLM 模拟器 |
+| SmoothVLM 补充 | `run_smoothvlm_style_vpi.py` | [多模态补充](../README.md#smoothvlm-style-多模态补充)；另下 `llava-llama3:8b`，需 VPI 图片 |
+| 表 3 跨模型 | 与第 4 步相同的 live 入口 | [表 3](../README.md#表3换模型跑live-agent)；另下 `llama3:8b`、`mistral:v0.3`，注意历史规则开关不同 |
+| 表 4 正常任务 | ToolBench、AgentBench proxy 两个入口 | [表 4](../README.md#表4正常任务保持率)；当前是代理任务指标，不是官方环境 SR |
+| 表 5 消融 | `run_wami_paper_ablation.py` | [表 5](../README.md#表5消融实验)；当前旧版删模块结果与新版 Full 混用，不能声称已完成统一版本消融 |
+| 论文图 | 按实际源数据重画 | [图片和结果](../README.md#图片和结果在哪看)；最新稿架构图没有绘图源码，训练图轮数尚未与日志对齐，不能提供假定已跑通的一键命令 |
+
+上述脚本都位于 `scripts/` 下。需要对比方法时再安装：
+
+```powershell
+python -m pip install -r requirements-baselines.txt
+python scripts/check_runtime_resources.py --group external --verify-hashes
+python scripts/check_runtime_resources.py --group vpi-images --verify-hashes
+```
+
+baseline 依赖与模型要求不同；这不表示所有对比实验在一台新电脑上都已验证。更多版本差别见[实验说明](experiments.md)。
+
+## 9. 常见报错
+
+| 现象 | 先检查什么 |
+|---|---|
+| `python` 不是项目解释器 | 运行 `python -c "import sys; print(sys.executable)"`，应指向当前项目 `.venv` |
+| 找不到 `.pt` / JSONL | 工作目录必须是项目根目录；权重必须完整下载，文件名不能多出 `(1)` |
+| `CUDA: False` / CUDA 报错 | 检查 NVIDIA 驱动及 GPU 版 PyTorch；现有权重保存的是 CUDA 配置 |
+| Ollama 连接失败 | 启动 Ollama，先让 `ollama list` 和单独的模型回复测试成功 |
+| `OPENAI_API_KEY is empty` | 漏了 `--provider ollama`；本地 Qwen 不需要 API Key |
+| 显存不足或很慢 | 关闭其他模型任务，先每类 1 条；不要同时跑 WAMI、VLM 和多个 baseline |
+| 样本数少于设置值 | 参数是上限，数据不足不会补造；AgentDojo 正常样本只有 86 条 |
+| 重跑数字与论文不同 | 保留本次 CSV、完整命令、模型版本和环境，不用改阈值来追论文数字 |
+
+向作者反馈问题时，请附上：执行命令、第一条完整报错、`python` 路径、PyTorch/CUDA 检查输出及 `ollama list`。不用发送 API Key 或个人配置文件。
+
+## 本次检查记录
+
+2026-09-03 在作者现有的 Windows / Python 3.12 / PyTorch 2.11.0+cu128 环境，原样执行了第 4 步的命令：三个数据集各 5+5，共 30 条均完成，生成各自的 CSV 和 MD。运行使用本地 `qwen2.5:7b-instruct`，不是读取旧结果，也没有调用付费 API。
+
+同时修复了注释汉化误改 `provenance` 接口和权重层名称的问题，两个 live 权重已核对为无缺失键、无多余键；相关接口、保存加载、来源分数调用和一批次训练测试通过。**这次没有重新执行全量实验，也没有在全新电脑上验证全部 baseline 安装。**

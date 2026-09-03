@@ -224,7 +224,8 @@ class _TorchWAMINet:
                     nn.Dropout(config.dropout),
                     nn.Linear(config.hidden_dim // 2, 1),
                 )
-                self.来源memory_head = nn.Sequential(
+                # 名称必须与已发布权重的 provenance_head 键一致。
+                self.provenance_head = nn.Sequential(
                     nn.LayerNorm(d * 4),
                     nn.Linear(d * 4, config.hidden_dim // 2),
                     nn.GELU(),
@@ -315,7 +316,7 @@ class _TorchWAMINet:
                 sink_auth = self.sink_auth_head(torch.cat([intent, action, state, intent * action], dim=-1)).squeeze(-1)
                 return source, drift, sink_auth
 
-            def 来源memory_logits(
+            def provenance_logits(
                 self,
                 intent: torch.Tensor,
                 action: torch.Tensor,
@@ -326,7 +327,7 @@ class _TorchWAMINet:
                 """函数说明。
                 
                 这个函数属于最终认可实验流程的一部分。它负责读取数据、构造输入、执行检测、调用模型或汇总指标中的一个环节。函数输出会继续传给后续评估、表格生成或 Excel 审计流程。"""
-                return self.来源memory_head(torch.cat([intent, action, observation, memory + state], dim=-1))
+                return self.provenance_head(torch.cat([intent, action, observation, memory + state], dim=-1))
 
         return _Net()
 
@@ -531,7 +532,7 @@ class TorchWAMIModel:
             )
             return tuple(float(logit.detach().cpu()) for logit in logits)
 
-    def 来源memory_scores(
+    def provenance_scores(
         self,
         intent_vec: np.ndarray,
         action_vec: np.ndarray,
@@ -544,7 +545,7 @@ class TorchWAMIModel:
         这个函数属于最终认可实验流程的一部分。它负责读取数据、构造输入、执行检测、调用模型或汇总指标中的一个环节。函数输出会继续传给后续评估、表格生成或 Excel 审计流程。"""
         self.net.eval()
         with self.torch.no_grad():
-            logits = self.net.来源memory_logits(
+            logits = self.net.provenance_logits(
                 self.tensor(intent_vec),
                 self.tensor(action_vec),
                 self.tensor(observation_vec),
